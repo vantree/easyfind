@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<!-- Stylesheets -->
+	<link href="http://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Playfair+Display:700,700i,900" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/page.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/interior-design.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="css/menu.css" />
+	<link rel="stylesheet" href="css/swiper.css" type="text/css" />
+	<link rel="stylesheet" href="css/form.css" type="text/css" />
+	<link rel="stylesheet" href="css/fonts.css" type="text/css" />
+	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+	<!-- 导航栏-->
+	<link rel="stylesheet" href="demos/shop/shop.css" type="text/css" />
+
+	<!-- 首页图片 -->
+
+	<!-- 主体内容 -->
+	<link rel="stylesheet" href="demos/course/course.css" type="text/css" />
+
+	<!-- 网页名称 -->
+	<title>基于多媒体内容的求职招聘平台</title>
+
+	<!-- 防止页面后退 -->
+	<script>
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+	</script>
+
+	<style>
+		.ok {
+			color:green;
+		}
+		.error {
+			color:red;
+		}
+	</style>
+
+</head>
+<body class="stretched">
+	<!-- 主体部分 -->
+	<div id="wrapper" class="clearfix">
+		<!-- 登录部分 -->
+		<div class="modal1 mfp-hide" id="modal-login">
+			<div class="card divcenter" style="max-width: 540px;">
+				<div class="card-header py-3 nobg center">
+					<h3 class="mb-0 t400">您好, 欢迎回来</h3>
+				</div>
+				<div class="card-body divcenter py-5" style="max-width: 70%;">
+					<!-- 信息表单 -->
+					<form id="login-form" name="login-form" class="nobottommargin row" action="loginServlet" method="post">
+						<div class="col-12">
+							<input type="text" id="login-name" name="login-name" class="form-control not-dark" placeholder="您的用户名或手机号" />
+						</div>
+						<div class="col-12 mt-4">
+							<input type="password" id="login-password" name="login-password" class="form-control not-dark" placeholder="您的密码" />
+						</div>
+						<div class="col-12">
+							<a href="#" class="fright text-dark t300 mt-2">忘记密码？</a>
+						</div>
+						<div class="col-12 mt-4">
+							<button class="button btn-block nomargin" id="login-submit" name="login-submit" value="login" onclick="login()">登录</button>
+						</div>
+					</form>
+				</div>
+				<div class="card-footer py-4 center">
+					<p class="mb-0">还没有账号? <a href="#modal-register" data-lightbox="inline"><u>点击注册</u></a></p>
+				</div>
+			</div>
+		</div>
+		<!-- 登录部分结束 -->
+
+		<!-- 注册部分 -->
+		<div class="modal1 mfp-hide" id="modal-register">
+			<div class="card divcenter" style="max-width: 540px;">
+				<div class="card-header py-3 nobg center">
+					<h3 class="mb-0 t400">您好，欢迎加入我们</h3>
+				</div>
+				<div class="card-body divcenter py-5" style="max-width: 70%;">
+					<!--<a href="#" class="button button-large btn-block si-colored si-facebook nott t400 ls0 center nomargin"><i class="icon-facebook-sign"></i> Log in with Facebook</a>
+                    <div class="divider divider-center"><span class="position-relative" style="top: -2px">OR</span></div>-->
+					<form id="register-form" name="register-form" class="nobottommargin row" action="registerServlet" method="post">
+						<div class="col-12">
+							<input type="text" id="register-name" name="register-name" value="" class="form-control not-dark" placeholder="用户名" />
+						</div>
+						<div class="col-12 mt-4">
+							<input type="text" id="register-phone" name="register-phone" value="" class="form-control not-dark" placeholder="手机号" />
+						</div>
+						<div class="col-12 mt-4">
+							<input type="password" id="register-password" name="register-password" value="" class="form-control not-dark" placeholder="密码：6~20位" />
+						</div>
+						<div class="col-12 mt-4">
+							<input type="password" id="register-password2" name="register-password2" value="" class="form-control not-dark" placeholder="确认密码" />
+						</div>
+						<div class="col-12 mt-4">
+							<button class="button btn-block nomargin" id="register-submit" name="register-submit" value="register">注册</button>
+						</div>
+					</form>
+				</div>
+				<div class="card-footer py-4 center">
+					<p class="mb-0">已有账号? <a href="#modal-login" data-lightbox="inline"><u>返回登录</u></a></p>
+				</div>
+			</div>
+		</div>
+		<!-- 注册部分结束 -->
+
+		<!-- 联系我们部分 -->
+		<div id="top-bar" class="dark" style="background-color: #a3a5a7;">
+			<div class="container clearfix">
+				<div class="row justify-content-between">
+					<div class="col-lg-5 nobottommargin">
+						<p class="nobottommargin d-flex justify-content-center justify-content-lg-start"><strong>欢迎访问本求职招聘平台。如果您有任何问题，请联系我们。</strong></p>
+					</div>
+
+					<div class="col-lg-7 d-none d-lg-flex justify-content-end">
+						<!-- 联系方式-->
+						<div id="top-social">
+							<ul>
+								<!--
+								<li><a href="#" class="si-facebook"><span class="ts-icon"><i class="icon-facebook"></i></span><span class="ts-text">Facebook</span></a></li>
+								<li><a href="#" class="si-instagram"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
+								-->
+								<li><a href="tel:+91.11.85412542" class="si-call"><span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+18990973017</span></a></li>
+								<li><a href="mailto:info@canvas.com" class="si-email3"><span class="ts-icon"><i class="icon-envelope-alt"></i></span><span class="ts-text">info@18990973017@163.com</span></a></li>
+							</ul>
+						</div>
+						<!-- 联系方式结束 -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 导航栏部分 -->
+		<header id="header" class="full-header clearfix">
+			<div id="header-wrap">
+				<div class="container clearfix">
+					<nav id="primary-menu" class="style-2 with-arrows">
+						<ul>
+							<li>
+								<!-- logo -->
+								<div id="logo">
+									<a href="index.html" class="standard-logo"><img src="images/EasyFind.png" alt="Canvas Logo"></a>
+									<a href="index.html" class="retina-logo"><img src="images/EasyFind.png" alt="Canvas Logo"></a>
+								</div>
+								<!-- logo结束 -->
+							</li>
+							<!-- 菜单 -->
+							<li class="current"><a href="#"><div>企业招聘信息</div></a></li>
+							<li><a href="#"><div>我要找工作</div></a></li>
+							<li><a href="#"><div>我要招人</div></a></li>
+						</ul>
+
+						<!-- Top Search -->
+						<div id="top-account">
+							<a href="#modal-login" data-lightbox="inline" ><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">登录</span></a>
+							<a href="#modal-register" data-lightbox="inline" ><span class="d-none d-sm-inline-block font-primary t500">注册</span></a>
+						</div>
+						<!-- #top-search end -->
+					</nav><!-- #primary-menu end -->
+				</div>
+			</div>
+		</header>
+		<!-- 导航栏结束-->
+
+		<!-- 主页图片 -->
+		<section id="slider" class="slider-element swiper_wrapper clearfix" data-autoplay="6000" data-speed="800" data-loop="true" data-grab="true" data-effect="fade" data-arrow="false" style="height: 600px;">
+
+			<div class="video-wrap">
+				<video id="slide-video" poster="demos/course/images/video/poster.jpg" preload="auto" loop autoplay muted>
+					<source src='demos/course/images/video/1.mp4' type='video/mp4' />
+				</video>
+				<div class="video-overlay" style="background: rgba(0,0,0,0.5); z-index: 1"></div>
+			</div>
+
+			<div class="vertical-middle center">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7">
+							<div class="slider-title mb-5 dark clearfix">
+								<h2 class="text-white text-rotater mb-2" data-separator="," data-rotate="fadeIn" data-speed="3500">寻找您喜欢的 <span class="t-rotate text-white">公司,职位,地点</span></h2>
+								<p class="lead mb-0 uppercase ls2" style="color: #CCC; font-size: 110%">你想要做怎样的工作？</p>
+							</div>
+							<div class="subscribe-widget" data-loader="button">
+								<div class="widget-subscribe-form-result"></div>
+								<form id="widget-subscribe-form" action="include/subscribe.php" method="post" class="nobottommargin" data-animate="fadeInUp">
+									<div class="input-group divcenter">
+										<input type="email" id="widget-subscribe-form-email" name="widget-subscribe-form-email" class="form-control form-control-lg not-dark required email" placeholder="输入公司、职位或地点" style="border: 0; box-shadow: none; overflow: hidden;">
+										<div class="input-group-append">
+											<button href="#" class="button t400" type="submit" style="border-radius: 3px;">搜索</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section><!-- #Slider End -->
+		<!-- 主页图片结束 -->
+
+		<!-- 正文内容 -->
+		<section id="content">
+			<!-- 岗位公司 -->
+			<div class="content-wrap">
+				<div class="wave-bottom" style="position: absolute; top: -12px; left: 0; width: 100%; background-image: url('demos/course/images/wave-3.svg'); height: 12px; z-index: 2; background-repeat: repeat-x; transform: rotate(180deg);"></div>
+				<!-- 感兴趣的岗位 -->
+				<div class="container">
+					<div class="heading-block nobottomborder my-4 center">
+						<h3>您可能感兴趣的岗位</h3>
+						<span>以下是我们为您筛选的一些岗位，如果您想要查看更多岗位，请 <a href="http://www.w3school.com.cn/">点击这里 >>></a></span>
+					</div>
+
+					<div class="row course-categories clearfix mb-4">
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/music.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(251,51,100,0.8);">
+									<span><i class="icon-music1"></i>媒体</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/development.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(29,74,103,0.8);">
+									<span><i class="icon-code1"></i>开发</span>
+								</a>
+							</div>
+						</div>
+
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/teacher.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(50,71,66,0.8);">
+									<span><i class="icon-line2-user"></i>教育</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/food.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(70,58,69,0.8);">
+									<span><i class="icon-food"></i>食品</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/business.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(252,108,52,0.8);">
+									<span><i class="icon-chart-bar1"></i>市场</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/health.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(158,108,87,0.8);">
+									<span><i class="icon-heartbeat"></i>职能</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/lifestyle.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(164,108,119,0.85);">
+									<span><i class="icon-line2-game-controller"></i>游戏</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/language.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(80,167,159,0.8);">
+									<span><i class="icon-line2-globe"></i>人工智能</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/paint.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(23,116,234,0.8);">
+									<span><i class="icon-paint-brush"></i>设计</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/photography.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(108,156,148,0.85);">
+									<span><i class="icon-line2-camera"></i>艺术</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/marketing.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(227,141,66,0.8);">
+									<span><i class="icon-line-share"></i>运维</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-sm-3 col-6 mt-4">
+							<div class="card hover-effect">
+								<img class="card-img" src="demos/course/images/categories/academics.jpg" alt="Card image">
+								<a href="#" class="card-img-overlay rounded p-0" style="background-color: rgba(39,103,240,0.8);">
+									<span><i class="icon-line-book"></i>DBA</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<!-- 最新职位推荐 -->
+				<div class="section topmargin-lg parallax" style="padding: 80px 0 60px; background-image: url('demos/course/images/icon-pattern.jpg'); background-size: auto; background-repeat: repeat"  data-bottom-top="background-position:0px 100px;" data-top-bottom="background-position:0px -500px;">
+					<!-- Wave Shape Divider -->
+					<div class="wave-top" ></div>
+					<div class="container">
+						<div class="heading-block nobottomborder mb-5 center">
+							<h3>最新最热门的职位</h3>
+							<span>以下是近段时间最热门的职位，如果您想要查看更多职位，请 <a href="http://www.w3school.com.cn/">点击这里 >>></a></span>
+						</div>
+						<div class="clear"></div>
+
+						<div class="row mt-2">
+							<!-- 职位1 -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">测试实习生[北京]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验应届毕业生 / 实习 / 3k-4k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">互联网</div>
+										<a href="#" class="text-dark position-relative">携程</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- 职位2 -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">嵌入式软件工程师[深圳]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验1-3年 / 本科 / 15k-25k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-warning">急招</div>
+										<a href="#" class="text-dark position-relative">iHealth</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- 职位3 -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">行政人事专员[北京]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验3-5年 / 本科 / 8k-13k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-warning">急招</div>
+										<a href="#" class="text-dark position-relative">领主</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- 职位4-->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">美术设计实习生[北京]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验应届毕业生 / 本科 / 7k-11k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-warning">可转正</div>
+										<a href="#" class="text-dark position-relative">猿辅导</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- 职位5 -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Python后端[深圳]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验1-3年 / 不限 / 15k-20k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">后端</div>
+										<a href="#" class="text-dark position-relative">链条科技</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- 职位6 -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+								<!--	<a href="#"><img class="card-img-top" src="images/courses/ziru.jpg" alt="Card image cap"></a> -->
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">高级产品经理[北京]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验3-5年 / 本科 / 30k-55k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">电商</div>
+										<a href="#" class="text-dark position-relative">伊澳科技</a>
+									</div>
+								</div>
+							</div>
+
+
+							<!-- 职位7 -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">内容运营[广州]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验不限 / 本科 / 10k-20k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">运营</div>
+										<a href="#" class="text-dark position-relative">虎牙信息</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- 职位8 -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">Java工程师[北京]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验3-5年 / 大专 / 18k-32k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-primary">后端</div>
+										<a href="#" class="text-dark position-relative">凯荟科技</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- 职位9 -->
+							<div class="col-md-4 mb-5">
+								<div class="card course-card hover-effect noborder">
+									<div class="card-body">
+										<h4 class="card-title t700 mb-2"><a href="#">售后服务专员[苏州]</a></h4>
+										<p class="card-text text-black-50 mb-1">经验应届毕业生 / 不限 / 6k-12k</p>
+									</div>
+									<div class="card-footer py-3 d-flex justify-content-between align-items-center bg-white text-muted">
+										<div class="badge alert-warning">急招</div>
+										<a href="#" class="text-dark position-relative">中国人寿</a>
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+					<!-- Wave Shape Divider - Bottom -->
+					<div class="wave-bottom"></div>
+				</div>
+				<!-- 热门岗位推荐结束 -->
+
+				<!-- 公司排行 -->
+				<div class="section nobg" style="padding: 60px 0 40px;">
+					<div class="container">
+						<div class="heading-block nobottomborder mb-5 center">
+							<h3>互联网热门公司榜</h3>
+							<span>以下是互联网行业一些热门公司，我们为您附上了友情链接，祝您找到满意的工作！</span>
+						</div>
+						<div class="clear"></div>
+						<div class="row">
+							<!-- 公司1 -->
+							<div class="col-lg-3 col-sm-6 mb-4">
+								<div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light">
+									<div class="fbox-icon">
+										<i><img src="images/instructor/ByteDance.jpg" class="noborder nobg shadow-sm" style="z-index: 2;" alt=""></i>
+									</div>
+									<h3 class="mb-4 nott ls0"><a href="https://www.bytedance.com/zh" class="text-dark">字节跳动</a><br><small class="subtitle nott color">“你关心的，才是头条”</small></h3>
+									<p class="text-dark"><strong>文娱 | 内容</strong></p>
+								</div>
+							</div>
+
+							<!-- 公司2-->
+							<div class="col-lg-3 col-sm-6 mb-4">
+								<div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light">
+									<div class="fbox-icon">
+										<i><img src="images/instructor/Baidu.png" class="noborder nobg shadow-sm" style="z-index: 2;" alt=""></i>
+									</div>
+									<h3 class="mb-4 nott ls0"><a href="https://home.baidu.com/" class="text-dark">百度</a><br><small class="subtitle nott color">“用科技让复杂的世界更简单”</small></h3>
+									<p class="text-dark"><strong>工具</strong></p>
+								</div>
+							</div>
+
+							<!-- 公司3 -->
+							<div class="col-lg-3 col-sm-6 mb-4">
+								<div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light">
+									<div class="fbox-icon">
+										<i><img src="images/instructor/JD.png" class="noborder nobg shadow-sm" style="z-index: 2;" alt=""></i>
+									</div>
+									<h3 class="mb-4 nott ls0"><a href="http://zhaopin.jd.com/home;jsessionid=21C3D3B023940B06F1C7E273CEA2E210.s1" class="text-dark">京东</a><br><small class="subtitle nott color">“成为全球最值得信赖的企业”</small></h3>
+									<p class="text-dark"><strong>电商</strong></p>
+								</div>
+							</div>
+
+							<!-- 公司4-->
+							<div class="col-lg-3 col-sm-6 mb-4">
+								<div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light">
+									<div class="fbox-icon">
+										<i><img src="images/instructor/tx.png" class="noborder nobg shadow-sm" style="z-index: 2;" alt=""></i>
+									</div>
+									<h3 class="mb-4 nott ls0"><a href="http://www.tencent.com/" class="text-dark">腾讯</a><br><small class="subtitle nott color">“成为互联网的水和电”</small></h3>
+									<p class="text-dark"><strong>社交</strong></p>
+								</div>
+							</div>
+
+							<!-- 公司5-->
+							<div class="col-lg-3 col-sm-6 mb-4">
+								<div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light">
+									<div class="fbox-icon">
+										<i><img src="images/instructor/huawei.png" class="noborder nobg shadow-sm" style="z-index: 2;" alt=""></i>
+									</div>
+									<h3 class="mb-4 nott ls0"><a href="http://career.huawei.com/reccampportal/campus4_index.html#campus4/content.html" class="text-dark">华为</a><br><small class="subtitle nott color">“更美好的全连接世界”</small></h3>
+									<p class="text-dark"><strong>通讯电子</strong></p>
+								</div>
+							</div>
+
+							<!-- 公司6-->
+							<div class="col-lg-3 col-sm-6 mb-4">
+								<div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light">
+									<div class="fbox-icon">
+										<i><img src="images/instructor/meituan.jpg" class="noborder nobg shadow-sm" style="z-index: 2;" alt=""></i>
+									</div>
+									<h3 class="mb-4 nott ls0"><a href="https://about.meituan.com/home" class="text-dark">美团点评</a><br><small class="subtitle nott color">“点亮未来，共同成长”</small></h3>
+									<p class="text-dark"><strong>消费生活</strong></p>
+								</div>
+							</div>
+
+							<!-- 公司7-->
+							<div class="col-lg-3 col-sm-6 mb-4">
+								<div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light">
+									<div class="fbox-icon">
+										<i><img src="images/instructor/wangyi.jpg" class="noborder nobg shadow-sm" style="z-index: 2;" alt=""></i>
+									</div>
+									<h3 class="mb-4 nott ls0"><a href="https://hr.163.com/" class="text-dark">网易</a><br><small class="subtitle nott color">“以匠心，致创新”</small></h3>
+									<p class="text-dark"><strong>电商</strong></p>
+								</div>
+							</div>
+
+							<!-- 公司8-->
+							<div class="col-lg-3 col-sm-6 mb-4">
+								<!-- <div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light fbox-effect"> -->
+								<div class="feature-box hover-effect shadow-sm fbox-center fbox-bg fbox-light">
+									<div class="fbox-icon">
+										<i><img src="images/instructor/xinlang.png" class="noborder nobg shadow-sm" style="z-index: 2;" alt=""></i>
+									</div>
+									<h3 class="mb-4 nott ls0"><a href="https://career.sina.com.cn/portal/home" class="text-dark">新浪</a><br><small class="subtitle nott color">“知名互联网公司”</small></h3>
+									<p class="text-dark"><strong>文娱 | 内容</strong></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 公司榜结束 -->
+
+				<!-- 客户端下载 -->
+				<div class="section mb-0 p-md-0">
+					<div class="container">
+						<div class="row align-items-center justify-content-between">
+
+							<div class="col-lg-5 col-md-5 col-sm-6">
+								<div class="heading-block nobottomborder">
+									<h2 class="t400 ls0 nott mb-0 font-primary" style="font-size: 44px; line-height: 1.3">欢迎下载客户端</h2>
+								</div>
+								<p>   为了方便您的使用，您可以在这里下载我们的手机客户端</p>
+								<div>
+									<a href="#"><img src="images/appstore.png" alt="" height="54" class="mt-3"></a>
+									<a href="#"><img src="images/googleplay.png" alt=""  class="ml-xl-3 ml-lg-1 mt-3 ml-0 " height="54"></a>
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-7 col-sm-6 mt-5 mt-sm-0">
+								<div class="d-none d-lg-flex">
+									<img src="images/iphone-1.png" class="fast" alt="" style="height: 600px" data-animate="fadeInDown">
+									<img src="images/iphone-2.png" class="fast" alt="" style="height: 600px" data-animate="fadeInUp">
+								</div>
+								<img src="images/iphone.png" alt="" class="d-block d-lg-none px-5 px-sm-0 p-md-5">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 客户端结束 -->
+			</div>
+			<!-- 岗位公司结束 -->
+		</section>
+		<!-- 正文内容结束 -->
+	</div>
+	<!-- 主体部分结束 -->
+
+
+	<!-- 顶部按钮 -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+	<!-- JS -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.js"></script>
+	<!-- 底部 -->
+	<script src="js/functions.js"></script>
+	<script src="js/index/index.js"></script>
+
+</body>
+</html>

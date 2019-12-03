@@ -1,0 +1,14 @@
+
+###这里连接的是我本地的microsoft失去了server的地址，之后更改
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://127.0.0.1:1433;databaseName=orange
+    username: sa
+    password: 1234567
+mybatis-plus:
+  configuration:
+    #自动驼峰下划线转换
+    map-underscore-to-camel-case: false
+    #打印sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
