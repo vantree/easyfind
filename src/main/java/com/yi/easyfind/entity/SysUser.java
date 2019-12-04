@@ -1,5 +1,6 @@
 package com.yi.easyfind.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -15,39 +16,58 @@ import java.util.*;
 @Data
 @TableName("user")
 public class SysUser implements UserDetails {
-    @TableId
+    @TableId(value = "id", type = IdType.UUID)
     private String id;
     private String phone;
     private String password;
     private String identity;
 
+    public SysUser() {
+        super();
+    }
+
+    public SysUser(String id, String phone, String password, String identity, Collection<? extends GrantedAuthority> authorities) {
+        if (phone != null && !"".equals(phone) && password != null) {
+            this.id = id;
+            this.phone = phone;
+            this.password = password;
+            this.identity = identity;
+            this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
+        }else{
+            throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
+        }
+    }
 
     /**
      * 角色
      */
     @JsonIgnore
-
+    @TableField(exist = false)
     private Set<GrantedAuthority> authorities;
 
     /**
      * 账号是否未过期，默认是false，记得要改一下
      */
     @JsonIgnore
+    @TableField(exist = false)
     private final boolean accountNonExpired = true;
     /**
      *账号是否未锁定，默认是false，记得也要改一下
      */
     @JsonIgnore
+    @TableField(exist = false)
     private final boolean accountNonLocked = true;
     /**
      *账号凭证是否未过期，默认是false，记得还要改一下
      */
     @JsonIgnore
+    @TableField(exist = false)
     private final boolean credentialsNonExpired = true;
     /**
      *是否启用
      */
     @JsonIgnore
+    @TableField(exist = false)
     private final boolean enabled = true;
 
 

@@ -1,14 +1,12 @@
-
-###ÕâÀïÁ¬½ÓµÄÊÇÎÒ±¾µØµÄmicrosoftÊ§È¥ÁËserverµÄµØÖ·£¬Ö®ºó¸ü¸Ä
 spring:
   datasource:
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://127.0.0.1:1433;databaseName=orange
-    username: sa
-    password: 1234567
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://60.205.183.240:3306/easy_find?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2b8
+    username: root
+    password: 666111
 mybatis-plus:
   configuration:
-    #×Ô¶¯ÍÕ·åÏÂ»®Ïß×ª»»
+    #è¿™ä¸ªé…ç½®ä¼šå°†æ‰§è¡Œçš„sqlæ‰“å°å‡ºæ¥ï¼Œåœ¨å¼€å‘æˆ–æµ‹è¯•çš„æ—¶å€™å¯ä»¥ç”¨
     map-underscore-to-camel-case: false
-    #´òÓ¡sqlÓï¾ä
+    #å…³é—­è‡ªåŠ¨è½¬æ¢å°é©¼å³°å‘½åè§„åˆ™
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

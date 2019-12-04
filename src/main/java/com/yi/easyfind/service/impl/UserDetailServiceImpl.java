@@ -19,16 +19,16 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private SysUserService sysUserService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser sysUser = sysUserService.getUserByUserName(username);
+    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
+        SysUser sysUser = sysUserService.getUserByPhone(phone);
         if(sysUser == null){
             throw new UsernameNotFoundException("用户名不存在");
         }
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
         if("A".equals(sysUser.getIdentity())) {
-            grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }else{
             grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
+        }else{
+            grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_COMPANY"));
         }
         sysUser.setAuthorities(grantedAuthorityList);
         return sysUser;

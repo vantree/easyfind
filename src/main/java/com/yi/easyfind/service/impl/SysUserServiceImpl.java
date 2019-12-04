@@ -11,14 +11,12 @@ import org.springframework.stereotype.Service;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
     @Override
-    public SysUser getUserByUserName(String username) {
-        System.out.println("暂时无数据库，");
-        return null;
+    public SysUser getUserByPhone(String phone) {
+        return baseMapper.getUserByPhone(phone);
     }
 
     @Override
-    public SysUser getSysUserById(String id) {
-        System.out.println("暂时无数据库");
-        return null;
+    public SysUser getUserById(String id) {
+        return baseMapper.getUserById(id);
     }
 }
