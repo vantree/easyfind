@@ -1,4 +1,4 @@
-# easyfind
+# EasyFind
 
 使用框架相关
 springboot
